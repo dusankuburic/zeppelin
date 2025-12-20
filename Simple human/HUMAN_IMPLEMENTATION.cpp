@@ -1,28 +1,29 @@
 #include "HUMAN.h"
 #include<iostream>
+#include<algorithm>
 
-void Human::SetIme(const std::string& ime) {
-	ime_ = ime;
+void Human::SetFirstName(const std::string& first_name) {
+	first_name_ = first_name;
 }
 
-std::string Human::GetIme() const {
-	return ime_;
+std::string Human::GetFirstName() const {
+	return first_name_;
 }
 
-void Human::SetPrezime(const std::string& prezime) {
-	prezime_ = prezime;
+void Human::SetLastName(const std::string& last_name) {
+	last_name_ = last_name;
 }
 
-std::string Human::GetPrezime() const {
-	return prezime_;
+std::string Human::GetLastName() const {
+	return last_name_;
 }
 
-void Human::SetGodinaRodjenja(const std::string& god_rodj) {
-	godina_rodjenja_ = god_rodj;
+void Human::SetBirthYear(int birth_year) {
+	birth_year_ = birth_year;
 }
 
-std::string Human::GetGodinaRodjenja() const {
-	return godina_rodjenja_;
+int Human::GetBirthYear() const {
+	return birth_year_;
 }
 
 void Human::AddElemToInventory(const std::string& elem) {
@@ -30,14 +31,14 @@ void Human::AddElemToInventory(const std::string& elem) {
 }
 
 
-void Human::AddMoreElemToInventory(const int& num) {
-	std::string elem;
+void Human::AddMoreElemToInventory(int num) {
+	std::string item;
 
-	std::cout << "Unos elemenata u inventory" << "\n";
+	std::cout << "Adding items to inventory" << "\n";
 	for (int i = 1; i <= num; ++i) {
-		std::cout << "Element [" << i << "]: ";
-		std::cin >> elem;
-		inventory.push_back(elem);
+		std::cout << "Item [" << i << "]: ";
+		std::cin >> item;
+		inventory.push_back(item);
 	}
 }
 
@@ -45,65 +46,65 @@ void Human::RemoveElemFromInventory() {
 	inventory.pop_back();
 }
 
-void Human::WhatIsInInventory() {
+void Human::WhatIsInInventory() const {
 	if (inventory.empty()) {
-		std::cout << "Inventory je prazan!!!" << "\n";
+		std::cout << "Inventory is empty!!!" << "\n";
 	}
 	else {
-		std::cout << "\n" << this->GetIme() << " inventory:" << "\n";
-		for (auto it = inventory.begin(); it != inventory.end(); ++it) {
-			std::cout << *it << "\n";
+		std::cout << "\n" << this->GetFirstName() << " inventory:" << "\n";
+		for (const auto& item : inventory) {
+			std::cout << item << "\n";
 		}
 
 		std::cout << "\n";
 	}
 }
 
-void Human::IsThisInInventory(const std::string& elem) {
+void Human::IsThisInInventory(const std::string& item) const {
 	if (inventory.empty()) {
-		std::cout << "Inventory je prazan!!!" << "\n";
+		std::cout << "Inventory is empty!!!" << "\n";
 	}
 	else {
-		auto it = find(inventory.cbegin(), inventory.cend(), elem);
+		auto it = find(inventory.cbegin(), inventory.cend(), item);
 
 		if (it != inventory.cend()) {
-			std::cout << "Element " << *it << " pronadjen!" << "\n";
+			std::cout << "Item " << *it << " found!" << "\n";
 		}
 		else {
-			std::cout << "Element nije pronadjen!" << "\n";
+			std::cout << "Item not found!" << "\n";
 		}
 	}
 }
 
 
-void Human::Trade(Human& toWho, const std::string& elem) {
+void Human::Trade(Human& toWho, const std::string& item) {
 	if (inventory.empty()) {
-		std::cout << "Inventory je prazan, nema elemenata za slanje!!!" << "\n";
+		std::cout << "Inventory is empty, no items to send!!!" << "\n";
 	}
 	else
 	{
-		auto it = find(inventory.cbegin(), inventory.cend(), elem);
+		auto it = find(inventory.cbegin(), inventory.cend(), item);
 
 		if (it != inventory.cend()) {
-			toWho.AddElemToInventory(elem);
+			toWho.AddElemToInventory(item);
 			inventory.erase(it);
-			std::cout << "Uspesno obavljano slanje" << "\n";
+			std::cout << "Successfully sent" << "\n";
 		}
 		else {
-			std::cout << "\n" << "Ne mozes da saljes element koji nemas!!!" << "\n";
+			std::cout << "\n" << "Cannot send an item you don't have!!!" << "\n";
 		}
 	}
 }
 
-Human::Human(std::string ime, std::string prezime, std::string godina_rodjenja) :
-	ime_(ime), prezime_(prezime), godina_rodjenja_(godina_rodjenja)
+Human::Human(std::string first_name, std::string last_name, int birth_year) :
+	first_name_(first_name), last_name_(last_name), birth_year_(birth_year)
 {
 
 }
 
 std::ostream& operator<< (std::ostream& out, const Human& human) {
-	out << "Ime: " << human.GetIme() << "\n";
-	out << "Prezime: " << human.GetPrezime() << "\n";
-	out << "Godina rodjenja: " << human.GetGodinaRodjenja() << "\n";
+	out << "First name: " << human.GetFirstName() << "\n";
+	out << "Last name: " << human.GetLastName() << "\n";
+	out << "Birth year: " << human.GetBirthYear() << "\n";
 	return out;
 }

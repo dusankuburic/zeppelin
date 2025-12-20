@@ -5,30 +5,30 @@
 class Human : public InventoryManipulation {
 public:
 	Human() {}
-	Human(std::string, std::string, std::string);
+	Human(std::string, std::string, int);
 	~Human() {}
 
-	void SetIme(const std::string&);
-	std::string GetIme() const;
+	void SetFirstName(const std::string&);
+	std::string GetFirstName() const;
 
-	void SetPrezime(const std::string&);
-	std::string GetPrezime() const;
+	void SetLastName(const std::string&);
+	std::string GetLastName() const;
 
-	void SetGodinaRodjenja(const std::string&);
-	std::string GetGodinaRodjenja() const;
+	void SetBirthYear(int);
+	int GetBirthYear() const;
 
 	virtual void AddElemToInventory(const std::string&);
-	virtual void AddMoreElemToInventory(const int&);
+	virtual void AddMoreElemToInventory(int);
 	virtual void RemoveElemFromInventory();
-	virtual void WhatIsInInventory();
-	virtual void IsThisInInventory(const std::string&);
+	virtual void WhatIsInInventory() const;
+	virtual void IsThisInInventory(const std::string&) const;
 
 	friend std::ostream& operator<< (std::ostream&, const Human&);
-	void Trade(Human& toWho, const std::string& elem);
+	void Trade(Human& toWho, const std::string& item);
 
 private:
-	std::string ime_;
-	std::string prezime_;
-	std::string godina_rodjenja_;
+	std::string first_name_;
+	std::string last_name_;
+	int birth_year_;
 	std::vector<std::string> inventory;
 };

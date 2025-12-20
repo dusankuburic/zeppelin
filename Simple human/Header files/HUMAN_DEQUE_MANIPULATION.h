@@ -2,67 +2,108 @@
 #include "HUMAN.h"
 #include<iostream>
 #include<deque>
+#include<limits>
 
-void AddHuman(std::deque<Human>& ljudi) {
-	std::string ime;
-	std::string prezime;
-	std::string godina_rodjenja;
+void AddHuman(std::deque<Human>& humans) {
+	std::string first_name;
+	std::string last_name;
+	int birth_year;
 
-	std::cout << "------ Unos ------ \n";
-	std::cout << "Ime: "; std::cin >> ime;
-	std::cout << "Prezime: "; std::cin >> prezime;
-	std::cout << "Godinu rodjenja: "; std::cin >> godina_rodjenja;
+	std::cout << "------ Input ------ \n";
+	std::cout << "First name: ";
+	if (!(std::cin >> first_name)) {
+		std::cerr << "Error: Invalid input for first name\n";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return;
+	}
 
-	ljudi.push_back(Human(ime, prezime, godina_rodjenja));
+	std::cout << "Last name: ";
+	if (!(std::cin >> last_name)) {
+		std::cerr << "Error: Invalid input for last name\n";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return;
+	}
+
+	std::cout << "Birth year: ";
+	if (!(std::cin >> birth_year) || birth_year < 1900 || birth_year > 2025) {
+		std::cerr << "Error: Invalid birth year (must be between 1900-2025)\n";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return;
+	}
+
+	humans.push_back(Human(first_name, last_name, birth_year));
 }
 
-void AddMoreHumans(std::deque<Human>& ljudi, const int& num) {
-	std::string ime;
-	std::string prezime;
-	std::string godina_rodjenja;
+void AddMoreHumans(std::deque<Human>& humans, int num) {
+	std::string first_name;
+	std::string last_name;
+	int birth_year;
 
 	for (int i = 1; i <= num; i++) {
-		std::cout << "------ Unos ------ \n";
-		std::cout << "Ime: "; std::cin >> ime;
-		std::cout << "Prezime: "; std::cin >> prezime;
-		std::cout << "Godinu rodjenja: "; std::cin >> godina_rodjenja;
+		std::cout << "------ Input ------ \n";
+		std::cout << "First name: ";
+		if (!(std::cin >> first_name)) {
+			std::cerr << "Error: Invalid input for first name\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
 
-		ljudi.push_back(Human(ime, prezime, godina_rodjenja));
+		std::cout << "Last name: ";
+		if (!(std::cin >> last_name)) {
+			std::cerr << "Error: Invalid input for last name\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
+
+		std::cout << "Birth year: ";
+		if (!(std::cin >> birth_year) || birth_year < 1900 || birth_year > 2025) {
+			std::cerr << "Error: Invalid birth year (must be between 1900-2025)\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
+
+		humans.push_back(Human(first_name, last_name, birth_year));
 	}
 }
 
-void PrintHumans(std::deque<Human>& ljudi) {
-	if (ljudi.empty()) {
-		std::cout << "Nema ljudi, deque je prazan!!!" << "\n";
+void PrintHumans(const std::deque<Human>& humans) {
+	if (humans.empty()) {
+		std::cout << "No humans, deque is empty!!!" << "\n";
 	}
 	else {
-		std::cout << "\n" << "_|_|>> ISPIS <<|_|_" << "\n";
-		for (auto it = ljudi.begin(); it != ljudi.cend(); ++it) {
+		std::cout << "\n" << "_|_|>> OUTPUT <<|_|_" << "\n";
+		for (const auto& human : humans) {
 			std::cout << "======================" << "\n";
-			std::cout << *it << "\n";
+			std::cout << human << "\n";
 		}
 	}
 }
 
-void PrintHumansInventory(std::deque<Human>& ljudi) {
-	if (ljudi.empty()) {
-		std::cout << "Nema ljudi, deque je prazan!!!" << "\n";
+void PrintHumansInventory(const std::deque<Human>& humans) {
+	if (humans.empty()) {
+		std::cout << "No humans, deque is empty!!!" << "\n";
 	}
 	else {
-		for (int it = 0; it < ljudi.size(); ++it) {
-			ljudi.at(it).WhatIsInInventory();
+		for (const auto& human : humans) {
+			human.WhatIsInInventory();
 		}
 	}
 }
 
-void PrintHumanInventory(std::deque<Human>& ljudi, const std::string& ime) {
-	if (ljudi.empty()) {
-		std::cout << "Nema ljudi, deque je prazan!!!" << "\n";
+void PrintHumanInventory(const std::deque<Human>& humans, const std::string& first_name) {
+	if (humans.empty()) {
+		std::cout << "No humans, deque is empty!!!" << "\n";
 	}
 	else {
-		for (auto it = ljudi.begin(); it != ljudi.end(); ++it) {
-			if (it->GetIme() == ime) {
-				it->WhatIsInInventory();
+		for (const auto& human : humans) {
+			if (human.GetFirstName() == first_name) {
+				human.WhatIsInInventory();
 			}
 		}
 	}
