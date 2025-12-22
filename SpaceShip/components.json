@@ -1,0 +1,154 @@
+{
+  "cargo": [
+    {
+      "id": "oxygen",
+      "name": "Oxygen",
+      "faction": "Universal",
+      "category": "cargo",
+      "price": 5000,
+      "atomic_number": 8,
+      "relative_atomic_mass": 15.999,
+      "state_at_20": "Gas",
+      "description": "Oxygen cargo container"
+    },
+    {
+      "id": "radon",
+      "name": "Radon",
+      "faction": "Universal",
+      "category": "cargo",
+      "price": 8500,
+      "atomic_number": 86,
+      "relative_atomic_mass": 222.0,
+      "state_at_20": "Gas",
+      "description": "Radon cargo container"
+    },
+    {
+      "id": "xeon",
+      "name": "Xeon",
+      "faction": "Universal",
+      "category": "cargo",
+      "price": 7200,
+      "atomic_number": 54,
+      "relative_atomic_mass": 131.29,
+      "state_at_20": "Gas",
+      "description": "Xenon cargo container"
+    }
+  ],
+  "engines": [
+    {
+      "id": "nomad_f1g_elipsion",
+      "name": "Nomad F1G Elipsion Engine",
+      "faction": "Nomad",
+      "category": "engine",
+      "price": 15000,
+      "power_usage": 115,
+      "radiation_level": 2,
+      "description": "Nomad faction advanced engine"
+    },
+    {
+      "id": "ai_auxiliary",
+      "name": "AI Auxiliary Engine",
+      "faction": "AI",
+      "category": "engine",
+      "price": 12500,
+      "power_usage": 50,
+      "radiation_level": 1,
+      "description": "AI faction auxiliary engine"
+    },
+    {
+      "id": "cheetah_zz8j",
+      "name": "Cheetah ZZ8J Engine",
+      "faction": "Civilian",
+      "category": "engine",
+      "price": 18000,
+      "power_usage": 95,
+      "radiation_level": 3,
+      "description": "High-performance civilian engine"
+    }
+  ],
+  "shields": [
+    {
+      "id": "cg6s_pavise_transport",
+      "name": "CG6S Pavise Transport Shield",
+      "faction": "Civilian",
+      "category": "shield",
+      "price": 25000,
+      "armor_rating": 850,
+      "energy_capacity": 5000,
+      "capacity": 95000,
+      "regen_delay": 15,
+      "regeneration_rate": 15000,
+      "regen_power": 8,
+      "description": "Transport-class shield generator"
+    },
+    {
+      "id": "gunboat_graviton",
+      "name": "Gunboat Graviton Shield",
+      "faction": "Military",
+      "category": "shield",
+      "price": 35000,
+      "armor_rating": 650,
+      "energy_capacity": 4000,
+      "capacity": 125000,
+      "regen_delay": 14,
+      "regeneration_rate": 19000,
+      "regen_power": 10,
+      "description": "Military gunboat shield"
+    },
+    {
+      "id": "sgd2_advance_protector_fighter",
+      "name": "SGD2 Advance Protector Fighter Shield",
+      "faction": "Military",
+      "category": "shield",
+      "price": 20000,
+      "armor_rating": 450,
+      "energy_capacity": 3000,
+      "capacity": 8500,
+      "regen_delay": 10,
+      "regeneration_rate": 1200,
+      "regen_power": 5,
+      "description": "Advanced fighter shield"
+    }
+  ],
+  "weapons": [
+    {
+      "id": "emp_7_pulse_cannon",
+      "name": "EMP 7 Pulse Cannon",
+      "faction": "Military",
+      "category": "weapon",
+      "price": 45000,
+      "rotation": 90,
+      "life_time": 2.50,
+      "travel_range": 1500,
+      "speed": 900,
+      "damage": 451,
+      "description": "EMP pulse weapon system"
+    },
+    {
+      "id": "h4z_brimstone_helfire_turret",
+      "name": "H4Z Brimstone Helfire Turret",
+      "faction": "Pirate",
+      "category": "weapon",
+      "price": 52000,
+      "rotation": 360,
+      "life_time": 3.75,
+      "travel_range": 2000,
+      "speed": 800,
+      "damage": 625,
+      "description": "Heavy turret system"
+    },
+    {
+      "id": "musket_gallic_tachyon_cannon",
+      "name": "Musket Gallic Tachyon Cannon",
+      "faction": "Gallic",
+      "category": "weapon",
+      "price": 48000,
+      "rotation": 180,
+      "life_time": 3.00,
+      "travel_range": 1800,
+      "speed": 850,
+      "damage": 520,
+      "description": "Gallic tachyon weapon"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "ships": [
+    {
+      "id": "gunboat_cte12400_condor",
+      "name": "Gunboat CTE12400 Condor",
+      "faction": "Corsairs",
+      "category": "gunboat",
+      "hull": 125000,
+      "max_shield": 8,
+      "cargo": 450,
+      "speed": 80,
+      "price": 30000,
+      "description": "Fast and deadly interceptor gunboat"
+    },
+    {
+      "id": "gunboat_kusari_ashikaga",
+      "name": "Gunboat Kusari Ashikaga",
+      "faction": "Kusari",
+      "category": "gunboat",
+      "hull": 115000,
+      "max_shield": 5,
+      "cargo": 350,
+      "speed": 80,
+      "price": 42335,
+      "description": "Defensive Kusari gunboat design"
+    },
+    {
+      "id": "gunboat_t883gb_ahoudari",
+      "name": "Gunboat T883GB Ahoudari",
+      "faction": "Zoners",
+      "category": "gunboat",
+      "hull": 140000,
+      "max_shield": 8,
+      "cargo": 400,
+      "speed": 80,
+      "price": 23467,
+      "description": "Heavy reinforced gunboat"
+    },
+    {
+      "id": "fighter_mj1_gecko_council",
+      "name": "Fighter MJ1 Gecko Council",
+      "faction": "Council",
+      "category": "fighter",
+      "hull": 4100,
+      "max_shield": 8,
+      "cargo": 45,
+      "speed": 80,
+      "price": 12356,
+      "description": "Agile fighter with moderate firepower"
+    },
+    {
+      "id": "fighter_r1series_p_skeleton",
+      "name": "Fighter R1SERIES P Skeleton",
+      "faction": "Zoners",
+      "category": "fighter",
+      "hull": 4300,
+      "max_shield": 8,
+      "cargo": 50,
+      "speed": 80,
+      "price": 564562,
+      "description": "Heavily armed fighter platform"
+    },
+    {
+      "id": "fighter_rhgm17_loki_red_hessian",
+      "name": "Fighter RHGM17 Loki Red Hessian",
+      "faction": "Red Hessian",
+      "category": "fighter",
+      "hull": 4300,
+      "max_shield": 8,
+      "cargo": 50,
+      "speed": 80,
+      "price": 43567,
+      "description": "Red Hessian combat fighter"
+    },
+    {
+      "id": "capital_liberty_archer_siege_cruiser",
+      "name": "Capital Liberty Archer Siege Cruiser",
+      "faction": "Liberty",
+      "category": "capital",
+      "hull": 295000,
+      "max_shield": 9,
+      "cargo": 800,
+      "speed": 70,
+      "price": 57233,
+      "description": "Powerful Liberty capital ship for large-scale operations"
+    },
+    {
+      "id": "capital_triumph_galic_royal_navy_destroyer",
+      "name": "Capital Triumph Galic Royal Navy Destroyer",
+      "faction": "Gallic",
+      "category": "capital",
+      "hull": 275000,
+      "max_shield": 9,
+      "cargo": 700,
+      "speed": 70,
+      "price": 23367,
+      "description": "Gallic navy destroyer with superior firepower"
+    },
+    {
+      "id": "capital_rhgm482_red_hessian_cruiser",
+      "name": "Capital RHGM482 Red Hessian Cruiser",
+      "faction": "Red Hessian",
+      "category": "capital",
+      "hull": 350000,
+      "max_shield": 9,
+      "cargo": 800,
+      "speed": 70,
+      "price": 54234,
+      "description": "Heavy Red Hessian capital ship"
+    }
+  ]
+}
