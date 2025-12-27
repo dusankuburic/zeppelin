@@ -1,20 +1,30 @@
 #include <gtest/gtest.h>
-#include "../Header files/HUMAN.h"
+#include "../Header files/Human.h"
 #include <sstream>
+
+class CaptureStdout {
+public:
+    CaptureStdout() : old_(std::cout.rdbuf(ss_.rdbuf())) {}
+    ~CaptureStdout() { std::cout.rdbuf(old_); }
+    std::string str() const { return ss_.str(); }
+private:
+    std::stringstream ss_;
+    std::streambuf* old_;
+};
 
 class HumanTest : public ::testing::Test {
 protected:
     Human human = Human("John", "Doe", 1990);
 };
 
-// Constructor tests
+
 TEST_F(HumanTest, ConstructorInitializesFieldsCorrectly) {
     EXPECT_EQ(human.GetFirstName(), "John");
     EXPECT_EQ(human.GetLastName(), "Doe");
     EXPECT_EQ(human.GetBirthYear(), 1990);
 }
 
-// First name tests
+
 TEST_F(HumanTest, SetAndGetFirstName) {
     human.SetFirstName("Jane");
     EXPECT_EQ(human.GetFirstName(), "Jane");
@@ -25,7 +35,7 @@ TEST_F(HumanTest, FirstNameCanBeEmpty) {
     EXPECT_EQ(human.GetFirstName(), "");
 }
 
-// Last name tests
+
 TEST_F(HumanTest, SetAndGetLastName) {
     human.SetLastName("Smith");
     EXPECT_EQ(human.GetLastName(), "Smith");
@@ -36,7 +46,7 @@ TEST_F(HumanTest, LastNameCanBeEmpty) {
     EXPECT_EQ(human.GetLastName(), "");
 }
 
-// Birth year tests
+
 TEST_F(HumanTest, SetAndGetBirthYear) {
     human.SetBirthYear(1985);
     EXPECT_EQ(human.GetBirthYear(), 1985);
@@ -52,27 +62,26 @@ TEST_F(HumanTest, BirthYearBoundaryMax) {
     EXPECT_EQ(human.GetBirthYear(), 2025);
 }
 
-// Inventory tests
+
 TEST_F(HumanTest, AddSingleItemToInventory) {
     human.AddElemToInventory("sword");
+    CaptureStdout capture;
     human.WhatIsInInventory();
     EXPECT_FALSE(human.GetFirstName().empty());
 }
 
 TEST_F(HumanTest, InventoryInitiallyEmpty) {
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.WhatIsInInventory();
-    std::string output = ss.str();
-    EXPECT_NE(output.find("inventory:"), std::string::npos);
+    std::string output = capture.str();
+    EXPECT_NE(output.find("Inventory is empty"), std::string::npos);
 }
 
 TEST_F(HumanTest, SearchItemInEmptyInventory) {
-    std::stringstream ss;
-    std::cerr.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.IsThisInInventory("sword");
-    std::string output = ss.str();
-    EXPECT_NE(output.find("Inventory"), std::string::npos);
+    std::string output = capture.str();
+    EXPECT_NE(output.find("Inventory is empty"), std::string::npos);
 }
 
 TEST_F(HumanTest, AddMultipleItemsToInventory) {
@@ -80,10 +89,9 @@ TEST_F(HumanTest, AddMultipleItemsToInventory) {
     human.AddElemToInventory("shield");
     human.AddElemToInventory("helmet");
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.WhatIsInInventory();
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("sword"), std::string::npos);
     EXPECT_NE(output.find("shield"), std::string::npos);
     EXPECT_NE(output.find("helmet"), std::string::npos);
@@ -94,10 +102,9 @@ TEST_F(HumanTest, RemoveItemFromInventory) {
     human.AddElemToInventory("shield");
     human.RemoveElemFromInventory();
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.WhatIsInInventory();
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_EQ(output.find("shield"), std::string::npos);
 }
 
@@ -105,31 +112,28 @@ TEST_F(HumanTest, SearchExistingItem) {
     human.AddElemToInventory("sword");
     human.AddElemToInventory("shield");
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.IsThisInInventory("sword");
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("found"), std::string::npos);
 }
 
 TEST_F(HumanTest, SearchNonExistingItem) {
     human.AddElemToInventory("sword");
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.IsThisInInventory("shield");
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("not found"), std::string::npos);
 }
 
-// Trade tests
+
 TEST_F(HumanTest, TradeWithEmptyInventory) {
     Human recipient("Jane", "Smith", 1992);
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.Trade(recipient, "sword");
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("empty"), std::string::npos);
 }
 
@@ -137,10 +141,9 @@ TEST_F(HumanTest, TradeExistingItem) {
     Human recipient("Jane", "Smith", 1992);
     human.AddElemToInventory("sword");
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.Trade(recipient, "sword");
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("Successfully sent"), std::string::npos);
 }
 
@@ -148,14 +151,13 @@ TEST_F(HumanTest, TradeNonExistingItem) {
     Human recipient("Jane", "Smith", 1992);
     human.AddElemToInventory("sword");
 
-    std::stringstream ss;
-    std::cout.rdbuf(ss.rdbuf());
+    CaptureStdout capture;
     human.Trade(recipient, "shield");
-    std::string output = ss.str();
+    std::string output = capture.str();
     EXPECT_NE(output.find("Cannot send"), std::string::npos);
 }
 
-// Operator<< tests
+
 TEST_F(HumanTest, OutputOperatorFormat) {
     std::stringstream ss;
     ss << human;
@@ -169,7 +171,7 @@ TEST_F(HumanTest, OutputOperatorFormat) {
     EXPECT_NE(output.find("1990"), std::string::npos);
 }
 
-// Edge cases
+
 TEST_F(HumanTest, NegativeBirthYear) {
     human.SetBirthYear(-100);
     EXPECT_EQ(human.GetBirthYear(), -100);

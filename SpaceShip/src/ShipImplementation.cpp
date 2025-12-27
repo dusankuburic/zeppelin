@@ -1,4 +1,4 @@
-#include "../HeaderFiles/Ships/Ship.h"
+#include "Ships/Ship.h"
 #include <sstream>
 #include <iomanip>
 
@@ -84,9 +84,9 @@ const std::string& Ship::GetDescription() const {
     return description_;
 }
 
-// ============================================================================
-// Setters
-// ============================================================================
+
+
+
 
 void Ship::SetHullStrength(double hull) {
     hull_strength_ = hull;

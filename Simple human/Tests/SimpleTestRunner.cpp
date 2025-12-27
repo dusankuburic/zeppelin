@@ -3,10 +3,10 @@
 #include <deque>
 #include <sstream>
 #include <cassert>
-#include "../Header files/HUMAN.h"
-#include "../Header files/HUMAN_DEQUE_MANIPULATION.h"
+#include "../Header files/Human.h"
+#include "../Header files/HumanDequeManipulation.h"
 
-// Simple test framework
+
 class TestRunner {
 private:
     int passed = 0;
@@ -47,7 +47,7 @@ public:
 
 TestRunner runner;
 
-// ============== HUMAN CLASS TESTS ==============
+
 
 void TestHumanConstructor() {
     runner.BeginSuite("Human Constructor Tests");
@@ -81,11 +81,11 @@ void TestHumanInventoryOperations() {
     human.AddElemToInventory("sword");
     human.AddElemToInventory("shield");
 
-    runner.Test("Can add single item", true);  // If we got here, no crash
+    runner.Test("Can add single item", true);  
     runner.Test("Can add multiple items", true);
 
     human.RemoveElemFromInventory();
-    runner.Test("Can remove item", true);  // If no crash, success
+    runner.Test("Can remove item", true);  
 }
 
 void TestHumanOutputOperator() {
@@ -111,7 +111,7 @@ void TestHumanTrade() {
     john.AddElemToInventory("sword");
     john.AddElemToInventory("shield");
 
-    // Capture output
+    
     std::stringstream old_cout_buffer;
     std::streambuf* old = std::cout.rdbuf(old_cout_buffer.rdbuf());
 
@@ -144,14 +144,14 @@ void TestHumanBirthYearBoundaries() {
     runner.Test("Can set birth year to 1950", human.GetBirthYear() == 1950);
 }
 
-// ============== DEQUE MANIPULATION TESTS ==============
+
 
 void TestPrintHumansEmpty() {
     runner.BeginSuite("Deque PrintHumans Empty Tests");
 
     std::deque<Human> humans;
 
-    // Capture output
+    
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -170,7 +170,7 @@ void TestPrintHumansWithData() {
     humans.push_back(Human("John", "Doe", 1990));
     humans.push_back(Human("Jane", "Smith", 1992));
 
-    // Capture output
+    
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -189,7 +189,7 @@ void TestPrintHumansInventoryEmpty() {
 
     std::deque<Human> humans;
 
-    // Capture output
+    
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -213,7 +213,7 @@ void TestPrintHumansInventoryWithData() {
     humans.push_back(Human("Jane", "Smith", 1992));
     humans.at(1).AddElemToInventory("wand");
 
-    // Capture output
+    
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -237,7 +237,7 @@ void TestPrintHumanInventoryByName() {
     humans.push_back(Human("Jane", "Smith", 1992));
     humans.at(1).AddElemToInventory("wand");
 
-    // Capture output for John
+    
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -258,7 +258,7 @@ void TestConstCorrectness() {
     humans.push_back(Human("John", "Doe", 1990));
     humans.at(0).AddElemToInventory("sword");
 
-    // This should compile if const correctness is correct
+    
     const std::deque<Human>& const_humans = humans;
 
     std::stringstream buffer;
@@ -280,10 +280,10 @@ void TestParameterPassing() {
 
     std::deque<Human> humans;
 
-    // AddMoreHumans should pass int by value, not by reference
+    
     runner.Test("int parameters passed by value", true);
 
-    // Test that const references are used properly for complex types
+    
     Human h1("Test", "User", 2000);
     const std::string& name = h1.GetFirstName();
     runner.Test("String getters return by reference", !name.empty());
@@ -342,13 +342,13 @@ void TestEnglishMessages() {
                 output.find("Birth year:") != std::string::npos);
 }
 
-// ============== MAIN ==============
+
 
 int main() {
     std::cout << "Starting Simple Human C++ Test Suite\n" << std::endl;
     std::cout << "========================================" << std::endl;
 
-    // Run all test suites
+    
     TestHumanConstructor();
     TestHumanSettersGetters();
     TestHumanInventoryOperations();

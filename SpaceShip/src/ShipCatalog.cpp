@@ -1,5 +1,5 @@
-#include "../HeaderFiles/Ships/ShipSpec.h"
-#include "../HeaderFiles/json/json.hpp"
+#include "Ships/ShipSpec.h"
+#include "json/json.hpp"
 #include <fstream>
 #include <algorithm>
 #include <iostream>

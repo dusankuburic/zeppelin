@@ -1,4 +1,4 @@
-#include "../HeaderFiles/Ships/ShipFactory.h"
+#include "Ships/ShipFactory.h"
 #include <iostream>
 #include <iomanip>
 

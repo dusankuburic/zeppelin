@@ -1,7 +1,7 @@
 #include <iostream>
 #include <deque>
-#include "Header files/HUMAN.h"
-#include "Header files/HUMAN_DEQUE_MANIPULATION.h"
+#include "Header files/Human.h"
+#include "Header files/HumanDequeManipulation.h"
 
 int main() {
     std::deque<Human> humans;

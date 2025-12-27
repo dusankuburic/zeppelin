@@ -89,40 +89,40 @@ struct WeaponSpec {
 
 class ComponentCatalog {
 public:
-    // Get singleton instance
+    
     static ComponentCatalog& GetInstance() {
         static ComponentCatalog instance;
         return instance;
     }
 
-    // Delete copy constructor and assignment operator
+    
     ComponentCatalog(const ComponentCatalog&) = delete;
     ComponentCatalog& operator=(const ComponentCatalog&) = delete;
 
-    // Load components from JSON file
+    
     bool LoadFromJSON(const std::string& filepath);
 
-    // Cargo accessors
+    
     const CargoSpec* GetCargoSpec(const std::string& id) const;
     std::vector<std::string> GetAllCargoIDs() const;
     size_t GetCargoCount() const { return cargo_specs_.size(); }
 
-    // Engine accessors
+    
     const EngineSpec* GetEngineSpec(const std::string& id) const;
     std::vector<std::string> GetAllEngineIDs() const;
     size_t GetEngineCount() const { return engine_specs_.size(); }
 
-    // Shield accessors
+    
     const ShieldSpec* GetShieldSpec(const std::string& id) const;
     std::vector<std::string> GetAllShieldIDs() const;
     size_t GetShieldCount() const { return shield_specs_.size(); }
 
-    // Weapon accessors
+    
     const WeaponSpec* GetWeaponSpec(const std::string& id) const;
     std::vector<std::string> GetAllWeaponIDs() const;
     size_t GetWeaponCount() const { return weapon_specs_.size(); }
 
-    // Print catalog
+    
     void PrintComponentCatalog() const;
 
 private:
